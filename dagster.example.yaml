@@ -1,0 +1,56 @@
+# dagster.yaml - place this in DAGSTER_HOME for both local and Docker
+
+# Run storage (where run metadata is stored)
+run_storage:
+  module: dagster._core.storage.runs
+  class: SqliteRunStorage
+  config:
+    base_dir:
+      env: DAGSTER_STORAGE_DIR
+
+# Event log storage (where event logs are stored)
+event_log_storage:
+  module: dagster._core.storage.event_log
+  class: SqliteEventLogStorage
+  config:
+    base_dir:
+      env: DAGSTER_STORAGE_DIR
+
+# Schedule storage (where schedule info is stored)
+schedule_storage:
+  module: dagster._core.storage.schedules
+  class: SqliteScheduleStorage
+  config:
+    base_dir:
+      env: DAGSTER_STORAGE_DIR
+
+# Local artifact storage (where intermediate/output files are stored)
+local_artifact_storage:
+  module: dagster._core.storage.root
+  class: LocalArtifactStorage
+  config:
+    base_dir:
+      env: DAGSTER_STORAGE_DIR
+
+# Compute logs storage
+compute_logs:
+  module: dagster._core.storage.compute_logs
+  class: LocalComputeLogManager
+  config:
+    base_dir:
+      env: DAGSTER_STORAGE_DIR
+
+# Run launcher
+run_launcher:
+  module: dagster._core.launcher
+  class: DefaultRunLauncher
+
+# Run coordinator  
+run_coordinator:
+  module: dagster._core.run_coordinator
+  class: QueuedRunCoordinator
+
+# Scheduler
+scheduler:
+  module: dagster._core.scheduler
+  class: DagsterDaemonScheduler
