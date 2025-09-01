@@ -51,21 +51,3 @@ dg dev
 ```
 
 Open http://localhost:3000 in your browser to see the project.
-
-## Learn more
-
-To learn more about this template and Dagster in general:
-
-- [Dagster Documentation](https://docs.dagster.io/)
-- [Dagster University](https://courses.dagster.io/)
-- [Dagster Slack Community](https://dagster.io/slack)
-
-
-```bash
-(dagster-grpc-poc) m1 ➜ ~/code/dagster-grpc-poc docker run --name some-postgres -p 5432:5432 -e POSTGRES_PASSWORD=secret -d postgres
-```
-
-COPY dagster.yaml workspace.yaml $DAGSTER_HOME
-
-
-docker run -p 4266:4266 -e DAGSTER_STORAGE_DIR=/dagster_home/storage  -v ~/.dagsterhome:/dagster_home dagstergrpc:latest
