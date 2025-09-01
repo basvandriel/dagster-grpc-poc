@@ -4,7 +4,7 @@ This guide will help you build and run the Dagster GRPC server locally using Doc
 
 ---
 
-### 1. Set Up `DAGSTER_HOME` Environment Variable
+### 1. Set up the `DAGSTER_HOME` environment variable
 
 Add the following line to your `~/.bashrc` (or `~/.zshrc` if you use zsh):
 
@@ -12,17 +12,9 @@ Add the following line to your `~/.bashrc` (or `~/.zshrc` if you use zsh):
 export DAGSTER_HOME=$HOME/dagster_home
 ```
 
-Reload your shell configuration:
-
-```bash
-source ~/.bashrc
-# or for zsh
-source ~/.zshrc
-```
-
 ---
 
-### 2. Create the Dagster Home Directory
+### 2. Create the Dagster home directory
 
 Create the directory if it doesn't exist:
 
@@ -61,6 +53,13 @@ Run the container and mount your Dagster home directory:
 docker run -p 4266:4266 -v $DAGSTER_HOME:/dagster_home dagster-grpc-server
 ```
 
+**Why do we need to mount `DAGSTER_HOME`?**
+
+Mounting your local `DAGSTER_HOME` directory into the container ensures that Dagster's configuration, logs, and storage are persisted outside the container. This allows you to:
+- Share configuration and state between multiple Dagster components (GRPC server, webserver, daemon).
+- Avoid losing important files when the container is stopped or rebuilt.
+- Easily inspect logs and configuration from your host system.
+
 ---
 
 ### 6. Test the GRPC Server
@@ -68,10 +67,3 @@ docker run -p 4266:4266 -v $DAGSTER_HOME:/dagster_home dagster-grpc-server
 The Dagster GRPC server should now be running and accessible at `localhost:4266`.
 
 You can connect to it from Dagster tools (webserver, daemon, etc.) by specifying the GRPC server address.
-
----
-
-**Tip:**  
-If you make changes to your code, rebuild the Docker image before restarting the container.
-
----
