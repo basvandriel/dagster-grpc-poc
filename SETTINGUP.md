@@ -9,7 +9,7 @@ This guide will help you build and run the Dagster GRPC server locally using Doc
 Add the following line to your `~/.bashrc` (or `~/.zshrc` if you use zsh):
 
 ```bash
-export DAGSTER_HOME=$HOME/dagster_home
+export DAGSTER_HOME=~/dagster_home
 ```
 
 ---
