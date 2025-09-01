@@ -41,7 +41,11 @@ From the project root directory, build the Docker image:
 
 ```bash
 docker build -t dagster-grpc-server .
+
+# or using podman
+podman build -t dagster-grpc-server .
 ```
+
 
 ---
 
@@ -51,7 +55,11 @@ Run the container and mount your Dagster home directory:
 
 ```bash
 docker run -p 4266:4266 -v $DAGSTER_HOME:/dagster_home dagster-grpc-server
+
+# or using podman
+podman run -p 4266:4266 -v $DAGSTER_HOME:/dagster_home dagster-grpc-server
 ```
+
 
 **Why do we need to mount `DAGSTER_HOME`?**
 
